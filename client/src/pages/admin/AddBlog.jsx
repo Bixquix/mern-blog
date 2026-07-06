@@ -59,7 +59,7 @@ const AddBlog = () => {
             }else{
                 toast.error(data.message)
             }
-        }catch{
+        }catch(error){
             toast.error(error.message)
         }finally{
             setLoading(false)

@@ -1,5 +1,5 @@
 import express from 'express'
-import 'dotenv/config'
+import './configs/env.js'
 import cors from 'cors'
 import connectDB from './configs/db.js';
 import adminRouter from './routes/adminRoutes.js';
@@ -18,9 +18,12 @@ app.use('/api/blog' , blogRouter)
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT,()=>{
-    console.log('Server is running on port' + PORT)
-})
+if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
+    app.listen(PORT,()=>{
+        console.log('Server is running on port ' + PORT)
+    })
+}
 
+export { app };
 export default app;
 
